@@ -25,18 +25,19 @@ def main() -> None:
     # Rename index for readability
     plot_df.index = [regime_map.get(int(idx), f"Regime {idx}") for idx in plot_df.index]
 
-    plt.figure(figsize=(10, 6))
-    plot_df.plot(kind="bar")
-    plt.title("Factor Sharpe Ratios by Regime")
-    plt.xlabel("Regime")
-    plt.ylabel("Sharpe Ratio")
-    plt.xticks(rotation=0)
+    ax = plot_df.plot(kind="bar", figsize=(10, 6))
+    ax.set_title("Factor Sharpe Ratios by Regime")
+    ax.set_xlabel("Regime")
+    ax.set_ylabel("Sharpe Ratio")
+    ax.tick_params(axis="x", rotation=0)
+    ax.axhline(0, linewidth=1)
+
     plt.tight_layout()
 
     output_dir = Path("plots")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    plt.savefig(output_dir / "sharpe_by_regime.png")
+    plt.savefig(output_dir / "sharpe_by_regime.png", dpi=300, bbox_inches="tight")
     plt.show()
     plt.close()
 

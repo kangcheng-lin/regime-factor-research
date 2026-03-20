@@ -10,14 +10,18 @@ def sharpe_ratio(series: pd.Series) -> float:
 
 
 def main() -> None:
-    data_path = Path("data/processed/merged_regime_factors.csv")
+    data_path = Path("data/processed/merged_regime_factors_qmj.csv")
 
     if not data_path.exists():
         raise FileNotFoundError("Run merge_regime_factors.py first.")
 
     df = pd.read_csv(data_path)
 
-    factors = ["mkt_rf", "smb", "hml", "mom"]
+    factors = ["mkt_rf", "smb", "hml", "mom", "QMJ"]
+
+    print(f"Rows before dropna: {len(df)}")
+    df = df.dropna(subset=factors)
+    print(f"Rows after dropna: {len(df)}")
 
     summary = pd.DataFrame(index=sorted(df["regime"].unique()))
 

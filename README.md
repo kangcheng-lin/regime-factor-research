@@ -22,6 +22,8 @@ Key findings:
 
 - SMB and HML exhibit weaker and less consistent regime dependence.
 
+- Momentum underperforms in bear regimes, while QMJ remains positive and is strongest in bear states, suggesting quality may serve as a defensive complement in a regime-aware factor allocation framework.
+
 These results confirm that factor returns are not stationary and depend significantly on underlying market regimes.
 
 ## Visualization
