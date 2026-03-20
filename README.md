@@ -24,6 +24,14 @@ Key findings:
 
 These results confirm that factor returns are not stationary and depend significantly on underlying market regimes.
 
+## Visualization
+
+### SPY Price with HMM Regimes
+![Regimes](plots/regime_plot.png)
+
+### Factor Sharpe by Regime
+![Sharpe](plots/sharpe_by_regime.png)
+
 ## Data Sources
 
 - **S&P 500 ETF / market proxy**
