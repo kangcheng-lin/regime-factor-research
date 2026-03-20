@@ -1,30 +1,75 @@
 # Regime Factor Research
 
-This project aims to rebuild and extend regime-based factor investing models from academic literature.
+This project studies regime-dependent behavior of asset pricing factors using a Hidden Markov Model (HMM). The goal is to rebuild and analyze regime-based factor investing ideas from academic literature and evaluate how factor performance varies across different market conditions.
 
-## Observation
+## Overview
 
-We observe that factor performance is regime-dependent. In particular:
+Factor returns are not stationary and can exhibit significantly different behavior under different market regimes. This project:
 
-- The market factor (MKT-RF) exhibits high Sharpe ratios in low-volatility (bull) regimes and negative Sharpe in high-volatility (bear) regimes.
+- Identifies market regimes using an HMM based on returns and volatility
+- Integrates standard factor datasets (MKT, SMB, HML, MOM) along with Quality Minus Junk (QMJ)
+- Evaluates factor performance conditionally across regimes
+- Produces summary statistics and visualizations to compare regime-dependent behavior
 
-- Momentum shows a clear regime dependence: it performs well in bull regimes but delivers negative Sharpe ratios during bear regimes, consistent with known "momentum crash" phenomena.
+## Key Findings
 
-- SMB and HML display weaker and less consistent regime dependence.
+We observe strong regime dependence in factor performance:
 
-We compute Sharpe ratios of standard factors (MKT, SMB, HML, MOM) across HMM-inferred market regimes.
+- **Market (MKT-RF)**  
+  - High Sharpe ratio in bull (low-volatility) regimes  
+  - Negative Sharpe in bear regimes  
 
-Key findings:
+- **Momentum (MOM)**  
+  - Performs well in bull regimes  
+  - Underperforms in bear regimes  
+  - Consistent with known *momentum crash* behavior  
 
-- Market factor (MKT-RF) delivers high Sharpe in bull regimes and negative Sharpe in bear regimes.
+- **SMB and HML**  
+  - Weaker and less consistent regime dependence  
 
-- Momentum (MOM) shows strong regime dependence, with positive Sharpe in bull regimes but negative Sharpe in bear regimes, consistent with known momentum crash behavior.
+- **Quality (QMJ)**  
+  - Positive performance in neutral regimes  
+  - **Strongest Sharpe in bear regimes**  
+  - Suggests quality may serve as a defensive factor  
 
-- SMB and HML exhibit weaker and less consistent regime dependence.
+### Main Insight
 
-- Momentum underperforms in bear regimes, while QMJ remains positive and is strongest in bear states, suggesting quality may serve as a defensive complement in a regime-aware factor allocation framework.
+Momentum and quality exhibit complementary behavior:
 
-These results confirm that factor returns are not stationary and depend significantly on underlying market regimes.
+> Momentum performs best in bull regimes but breaks down in bear regimes, while QMJ remains resilient and performs strongest during market stress.
+
+This supports the idea of **regime-aware factor allocation**.
+
+## Methodology
+
+### 1. Regime Identification
+- Hidden Markov Model (HMM)
+- Inputs:
+  - Daily returns
+  - Rolling volatility
+- Output:
+  - Discrete regimes (bull, neutral, bear)
+
+### 2. Factor Integration
+- Fama-French factors:
+  - MKT-RF, SMB, HML
+- Momentum (MOM)
+- AQR Quality Minus Junk (QMJ)
+
+### 3. Regime-Based Analysis
+For each regime, we compute:
+
+- Mean return  
+- Standard deviation  
+- Sharpe ratio  
+
+Results are saved to:
+
+```text
+data/results/
+├── factor_summary_by_regime.csv
+├── sharpe_by_regime.csv
+```
 
 ## Visualization
 
