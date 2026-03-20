@@ -27,7 +27,7 @@ These results confirm that factor returns are not stationary and depend signific
 ## Visualization
 
 ### SPY Price with HMM Regimes
-![Regimes](plots/regime_plot.png)
+![Regimes](plots/spy_regimes.png)
 
 ### Factor Sharpe by Regime
 ![Sharpe](plots/sharpe_by_regime.png)
